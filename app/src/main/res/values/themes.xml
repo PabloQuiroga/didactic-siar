@@ -2,4 +2,11 @@
 <resources>
 
     <style name="Theme.SiarDelivery" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.MySplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/orange_400</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/siar</item>
+        <item name="windowSplashScreenAnimationDuration">300</item>
+        <item name="postSplashScreenTheme">@style/Theme.SiarDelivery</item>
+    </style>
 </resources>

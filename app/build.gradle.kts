@@ -69,6 +69,9 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+    //navigation compose
+    implementation(libs.androidx.navigation.compose)
+
     //splashScreen
     implementation(libs.androidx.splashscreen)
 
