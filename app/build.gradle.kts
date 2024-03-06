@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.kapt)
 }
 
 android {
@@ -23,7 +26,7 @@ android {
     buildTypes {
         debug {
             isDebuggable = true
-            buildConfigField("String", "BASE_URL", "")
+            buildConfigField("String", "BASE_URL", "\"https://jsonplaceholder.typicode.com/\"")
         }
         release {
             isMinifyEnabled = false
@@ -45,7 +48,7 @@ android {
         buildConfig = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.10"
     }
     packaging {
         resources {
@@ -65,6 +68,13 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    //splashScreen
+    implementation(libs.androidx.splashscreen)
+
+    //hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
