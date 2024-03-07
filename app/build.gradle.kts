@@ -62,15 +62,17 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
+    //compose
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-
     //navigation compose
     implementation(libs.androidx.navigation.compose)
+    //constraints compose
+    implementation(libs.constraintslayout.compose)
 
     //splashScreen
     implementation(libs.androidx.splashscreen)
@@ -78,6 +80,8 @@ dependencies {
     //hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+    //Hilt navigation compose
+    implementation(libs.hilt.navigation)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
