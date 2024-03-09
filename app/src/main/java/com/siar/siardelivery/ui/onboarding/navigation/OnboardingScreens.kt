@@ -1,4 +1,4 @@
-package com.siar.siardelivery.ui.onboarding.utils
+package com.siar.siardelivery.ui.onboarding.navigation
 
 /*****
  * Project: Siar Delivery

@@ -1,6 +1,5 @@
 package com.siar.siardelivery.ui.onboarding.login
 
-import android.util.Patterns
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,21 +11,20 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
@@ -49,14 +47,13 @@ import com.siar.siardelivery.R
  *****/
 @Composable
 fun LoginScreen(
-    onLoginClick: (String, String) -> Unit,
+    loginViewModel: LoginViewModel,
     onRegisterClick: () -> Unit,
 ) {
-    var mail by remember { mutableStateOf("") }
-    var pass by remember { mutableStateOf("") }
-    var isLoginEnabled by remember {
-        mutableStateOf(false)
-    }
+    val mail by loginViewModel.email.observeAsState(initial = "")
+    val pass by loginViewModel.password.observeAsState(initial = "")
+    val loginEnabled by loginViewModel.isLoginEnabled.observeAsState(initial = false)
+    val isLoading by loginViewModel.isLoading.observeAsState(initial = false)
 
     ConstraintLayout(
         modifier = Modifier
@@ -64,83 +61,117 @@ fun LoginScreen(
     ) {
         val (
             colContent,
-            btnLogin,
-            lblSignin,
+            actionSection,
+            progressBar,
         ) = createRefs()
 
-        Column(
-            modifier = Modifier
-                .constrainAs(colContent) {
-                    top.linkTo(parent.top)
-                }
-                .padding(top = 16.dp)
-        ) {
-            Text(
-                text = stringResource(id = R.string.login_lbl),
+        if (!isLoading) {
+            Column(
                 modifier = Modifier
-                    .padding(top = 24.dp, start = 32.dp),
-                fontFamily = FontFamily.Cursive,
-                fontWeight = FontWeight.ExtraBold,
-                fontSize = 36.sp
-            )
-            Text(
-                text = stringResource(id = R.string.login_sub),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 16.dp, bottom = 16.dp, start = 32.dp),
-                textAlign = TextAlign.Start,
-                fontSize = 14.sp
-            )
+                    .constrainAs(colContent) {
+                        top.linkTo(parent.top)
+                    }
+                    .padding(top = 16.dp)
+            ) {
+                TitleSection()
 
-            SectionInputs(
-                mail = mail,
-                pass = pass,
-                onMailChange = {
-                    mail = it
-                    isLoginEnabled = enableLogin(mail, pass)
-                },
-                onPassChange = {
-                    pass = it
-                    isLoginEnabled = enableLogin(mail, pass)
-                }
+                SectionInputs(
+                    mail = mail,
+                    pass = pass,
+                    onMailChange = {
+                        loginViewModel.onLoginChanged(mail = it, pass = pass)
+                    },
+                    onPassChange = {
+                        loginViewModel.onLoginChanged(mail = mail, pass = it)
+                    }
+                )
+            }
+
+            Column(
+                modifier = Modifier
+                    .constrainAs(actionSection) {
+                        bottom.linkTo(parent.bottom)
+                    }
+            ) {
+                ActionSection(
+                    enable = loginEnabled,
+                    onLoginClick = {
+                        loginViewModel.login(mail, pass)
+                    },
+                    onRegisterClick = {
+                        onRegisterClick()
+                    }
+                )
+            }
+
+        } else {
+            CircularProgressIndicator(
+                modifier = Modifier
+                    .constrainAs(progressBar) {
+                        top.linkTo(parent.top)
+                        bottom.linkTo(parent.bottom)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                    }
             )
         }
+    }
+}
 
-        Button(
-            enabled = isLoginEnabled,
-            onClick = {
-                onLoginClick(mail, pass)
-            },
-            modifier = Modifier
-                .constrainAs(btnLogin) {
-                    bottom.linkTo(lblSignin.top)
-                }
-                .fillMaxWidth()
-                .padding(vertical = 8.dp, horizontal = 16.dp)
-        ) {
-            Text(
-                text = stringResource(id = R.string.login_btn_lbl),
-                fontSize = 16.sp,
-                modifier = Modifier.padding(8.dp)
-            )
-        }
-
+@Composable
+fun ActionSection(
+    enable: Boolean,
+    onLoginClick: () -> Unit,
+    onRegisterClick: () -> Unit,
+) {
+    Button(
+        enabled = enable,
+        onClick = {
+            onLoginClick()
+        },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp, horizontal = 16.dp)
+    ) {
         Text(
-            text = stringResource(id = R.string.login_redirect_signin_lbl),
-            modifier = Modifier
-                .constrainAs(lblSignin) {
-                    bottom.linkTo(parent.bottom)
-                }
-                .clickable {
-                    onRegisterClick()
-                }
-                .fillMaxWidth()
-                .padding(bottom = 16.dp, top = 8.dp),
-            textAlign = TextAlign.Center,
-            fontSize = 12.sp,
-            fontWeight = FontWeight.Bold
+            text = stringResource(id = R.string.login_btn_lbl),
+            fontSize = 16.sp,
+            modifier = Modifier.padding(8.dp)
         )
     }
+
+    Text(
+        text = stringResource(id = R.string.login_redirect_signin_lbl),
+        modifier = Modifier
+            .clickable {
+                onRegisterClick()
+            }
+            .fillMaxWidth()
+            .padding(bottom = 16.dp, top = 8.dp),
+        textAlign = TextAlign.Center,
+        fontSize = 12.sp,
+        fontWeight = FontWeight.Bold
+    )
+}
+
+@Composable
+fun TitleSection() {
+    Text(
+        text = stringResource(id = R.string.login_lbl),
+        modifier = Modifier
+            .padding(top = 24.dp, start = 32.dp),
+        fontFamily = FontFamily.Cursive,
+        fontWeight = FontWeight.ExtraBold,
+        fontSize = 36.sp
+    )
+    Text(
+        text = stringResource(id = R.string.login_sub),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 16.dp, horizontal = 32.dp),
+        textAlign = TextAlign.Start,
+        fontSize = 14.sp
+    )
 }
 
 @Composable
@@ -188,33 +219,17 @@ fun SectionInputs(
             unfocusedContainerColor = MaterialTheme.colorScheme.background
         ),
         trailingIcon = {
-            val image = if(passwordVisibility)
+            val image = if (passwordVisibility)
                 Icons.Filled.VisibilityOff else Icons.Filled.Visibility
 
-            IconButton( onClick = { passwordVisibility = !passwordVisibility }) {
+            IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
                 Icon(imageVector = image, contentDescription = "show password")
             }
         },
-        visualTransformation = if (passwordVisibility){
+        visualTransformation = if (passwordVisibility) {
             VisualTransformation.None
         } else {
             PasswordVisualTransformation('\u002A')
         }
     )
-}
-
-@Preview(showSystemUi = true)
-@Composable
-fun LoginScreenPreview() {
-    LoginScreen(
-        onLoginClick = { _, _ ->
-            /* TODO */
-        },
-        onRegisterClick = {}
-    )
-}
-
-fun enableLogin(email: String, pass: String): Boolean {
-    return Patterns.EMAIL_ADDRESS.matcher(email).matches() &&
-    pass.length > 6
 }

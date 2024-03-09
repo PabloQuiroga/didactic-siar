@@ -1,4 +1,4 @@
-package com.siar.siardelivery.ui.onboarding.utils
+package com.siar.siardelivery.ui.onboarding.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -36,9 +36,7 @@ fun NavGraphBuilder.addLoginScreen(navController: NavHostController){
     ){
         val viewmodel: LoginViewModel = hiltViewModel()
         LoginScreen(
-            onLoginClick = { mail, pass ->
-                viewmodel.login(mail, pass)
-            },
+            viewmodel,
             onRegisterClick = {
                 navigateToRegisterScreen(navController)
             }

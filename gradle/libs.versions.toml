@@ -9,6 +9,7 @@ lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.8.2"
 composeBom = "2024.02.01"
 materialIconsExtended = "1.6.3"
+runtimeLivedata = "1.6.2"
 splashscreen = "1.0.1"
 hiltAndroid = "2.50"
 detekt = "1.23.5"
@@ -24,6 +25,7 @@ androidx-activity-compose = { group = "androidx.activity", name = "activity-comp
 
 # Jetpack Compose
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }

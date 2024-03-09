@@ -61,6 +61,7 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.livedata)
 
     //compose
     implementation(libs.androidx.activity.compose)
