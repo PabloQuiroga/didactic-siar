@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.siar.siardelivery.domain.LoginUseCase
+import com.siar.siardelivery.domain.model.LoginRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -45,10 +46,11 @@ class LoginViewModel @Inject constructor(
         Patterns.EMAIL_ADDRESS.matcher(email).matches() && pass.length > 6
 
     fun login(mail: String, pass: String){
-        // TODO
+        val request = LoginRequest(mail, pass) // maybe can be better
+
         _isLoading.value = true
         viewModelScope.launch {
-            loginUseCase(mail, pass)
+            loginUseCase(request)
             _isLoading.value = false
         }
     }
