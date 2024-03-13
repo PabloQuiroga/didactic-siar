@@ -85,6 +85,10 @@ dependencies {
     //Hilt navigation compose
     implementation(libs.hilt.navigation)
 
+    //retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
