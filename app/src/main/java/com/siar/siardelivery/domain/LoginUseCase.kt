@@ -1,8 +1,8 @@
 package com.siar.siardelivery.domain
 
-import com.siar.siardelivery.data.LoginRepository
 import com.siar.siardelivery.domain.model.LoginRequest
-import kotlinx.coroutines.delay
+import com.siar.siardelivery.domain.model.response.Response
+import com.siar.siardelivery.domain.repository.LoginRepository
 import javax.inject.Inject
 
 /*****
@@ -15,7 +15,7 @@ class LoginUseCase @Inject constructor(
     private val loginRepository: LoginRepository
 ) {
 
-    suspend operator fun invoke(loginRequest: LoginRequest): Boolean{
+    suspend operator fun invoke(loginRequest: LoginRequest): Response {
         return loginRepository.doLogin(loginRequest)
     }
 }
