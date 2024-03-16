@@ -3,6 +3,7 @@ package com.siar.siardelivery.data.remote
 import com.siar.siardelivery.data.model.ResponseDto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import retrofit2.Response
 import javax.inject.Inject
 
 /*****
@@ -14,7 +15,7 @@ import javax.inject.Inject
 class UserService @Inject constructor(
     private val userApi: UserApi
 ){
-    suspend fun getUser(): ResponseDto{
+    suspend fun getUser(): Response<ResponseDto>{
         return withContext(Dispatchers.IO){
             userApi.fetchUser()
         }

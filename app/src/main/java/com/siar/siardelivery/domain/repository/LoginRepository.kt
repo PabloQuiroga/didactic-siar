@@ -1,5 +1,6 @@
 package com.siar.siardelivery.domain.repository
 
+import com.siar.siardelivery.data.util.Resource
 import com.siar.siardelivery.domain.model.LoginRequest
 import com.siar.siardelivery.domain.model.response.Response
 
@@ -10,5 +11,5 @@ import com.siar.siardelivery.domain.model.response.Response
  * Last update: 14/03/2024
  *****/
 interface LoginRepository {
-    suspend fun doLogin(request: LoginRequest): Response
+    suspend fun doLogin(request: LoginRequest): Resource<Response>
 }

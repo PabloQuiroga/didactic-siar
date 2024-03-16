@@ -1,6 +1,7 @@
 package com.siar.siardelivery.data.remote
 
 import com.siar.siardelivery.data.model.ResponseDto
+import retrofit2.Response
 import retrofit2.http.GET
 
 /*****
@@ -12,5 +13,5 @@ import retrofit2.http.GET
 interface UserApi {
 
     @GET("api/")
-    suspend fun fetchUser(): ResponseDto
+    suspend fun fetchUser(): Response<ResponseDto>
 }
