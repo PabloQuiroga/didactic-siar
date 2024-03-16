@@ -26,7 +26,8 @@ android {
     buildTypes {
         debug {
             isDebuggable = true
-            buildConfigField("String", "BASE_URL", "\"https://jsonplaceholder.typicode.com/\"")
+            buildConfigField("String", "JSON_PLACEHOLDER", "\"https://jsonplaceholder.typicode.com/\"")
+            buildConfigField("String", "MOCK_USER", "\"https://randomuser.me/\"")
         }
         release {
             isMinifyEnabled = false
