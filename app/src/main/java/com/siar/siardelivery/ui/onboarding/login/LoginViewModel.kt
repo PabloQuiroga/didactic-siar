@@ -8,7 +8,10 @@ import androidx.lifecycle.viewModelScope
 import com.siar.siardelivery.domain.LoginUseCase
 import com.siar.siardelivery.domain.model.LoginRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,40 +21,44 @@ import javax.inject.Inject
  *
  * Last update: 07/03/2024
  *****/
-@Suppress("MagicNumber", "UnusedParameter")
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     val loginUseCase: LoginUseCase
 ): ViewModel() {
 
-    private val _email = MutableLiveData<String>()
-    val email: LiveData<String> = _email
-
-    private val _password = MutableLiveData<String>()
-    val password: LiveData<String> = _password
-
-    private val _isLoginEnabled = MutableLiveData<Boolean>()
-    val isLoginEnabled: LiveData<Boolean> = _isLoginEnabled
+    private val _uiState = MutableStateFlow(LoginViewState())
+    val uiState: StateFlow<LoginViewState> = _uiState.asStateFlow()
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
-
-    fun onLoginChanged(mail: String, pass: String){
-        _email.value = mail
-        _password.value = pass
-        _isLoginEnabled.value = enableLogin(mail, pass)
-    }
-
-    private fun enableLogin(email: String, pass: String) =
-        Patterns.EMAIL_ADDRESS.matcher(email).matches() && pass.length > 6
 
     fun login(mail: String, pass: String){
         val request = LoginRequest(mail, pass) // maybe can be better
 
         _isLoading.value = true
         viewModelScope.launch {
-            loginUseCase(request)
-            _isLoading.value = false
+
+            val result = loginUseCase(request)
+            if (result.data != null || result.message.isNullOrBlank()){
+                _isLoading.value = false
+                // everything ok and have user data
+            } else {
+                _isLoading.value = false
+                // have some error with message
+            }
         }
     }
+
+    fun onLoginChanged(mail: String, pass: String){
+        _uiState.update {
+            it.copy(
+                mail = mail,
+                pass = pass,
+                enabled = enableLogin(mail, pass)
+            )
+        }
+    }
+
+    private fun enableLogin(email: String, pass: String) =
+        Patterns.EMAIL_ADDRESS.matcher(email).matches() && pass.length > 6
 }

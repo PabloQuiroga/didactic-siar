@@ -7,4 +7,8 @@
     <string name="login_redirect_signin_lbl">Registrate aqui</string>
     <string name="edit_lbl_mail">Email</string>
     <string name="edit_lbl_pass">Password</string>
+
+    <!--  Errors  -->
+    <string name="login_error_title_default"><![CDATA[Algo salió mal]]></string>
+    <string name="retry_lbl">Reintentar</string>
 </resources>
