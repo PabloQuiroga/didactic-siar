@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.siar.siardelivery.data.util.Resource
 import com.siar.siardelivery.domain.LoginUseCase
 import com.siar.siardelivery.domain.model.LoginRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,7 +25,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     val loginUseCase: LoginUseCase
-): ViewModel() {
+    ): ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginViewState())
     val uiState: StateFlow<LoginViewState> = _uiState.asStateFlow()
@@ -35,16 +36,21 @@ class LoginViewModel @Inject constructor(
     fun login(mail: String, pass: String){
         val request = LoginRequest(mail, pass) // maybe can be better
 
-        _isLoading.value = true
+        changeLoadingState(true)
         viewModelScope.launch {
-
-            val result = loginUseCase(request)
-            if (result.data != null || result.message.isNullOrBlank()){
-                _isLoading.value = false
-                // everything ok and have user data
-            } else {
-                _isLoading.value = false
-                // have some error with message
+            when (loginUseCase(request)){
+                is Resource.Success -> {
+                    changeLoadingState(false)
+                    // everything ok and have user data
+                    _uiState.update {
+                        it.copy(isLoggedIn = true)
+                    }
+                }
+                is Resource.Error -> {
+                    changeLoadingState(false)
+                    // have some error with message
+                }
+                is Resource.Loading -> {}
             }
         }
     }
@@ -61,4 +67,8 @@ class LoginViewModel @Inject constructor(
 
     private fun enableLogin(email: String, pass: String) =
         Patterns.EMAIL_ADDRESS.matcher(email).matches() && pass.length > 6
+
+    private fun changeLoadingState(state: Boolean) {
+        _isLoading.value = state
+    }
 }

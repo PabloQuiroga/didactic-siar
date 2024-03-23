@@ -1,6 +1,7 @@
 package com.siar.siardelivery.ui.onboarding.login
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -17,9 +18,16 @@ import com.siar.siardelivery.ui.onboarding.login.views.LoginContent
 fun LoginScreen(
     loginViewModel: LoginViewModel,
     onRegisterClick: () -> Unit,
+    isLoggedIn: () -> Unit
 ) {
     val uiState by loginViewModel.uiState.collectAsState()
     val isLoading by loginViewModel.isLoading.observeAsState(initial = false)
+
+    LaunchedEffect(key1 = uiState.isLoggedIn) {
+        if (uiState.isLoggedIn){
+            isLoggedIn()
+        }
+    }
 
     if (isLoading) {
         LoaderView()

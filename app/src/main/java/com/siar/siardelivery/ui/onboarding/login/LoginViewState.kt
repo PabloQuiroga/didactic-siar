@@ -7,5 +7,6 @@ package com.siar.siardelivery.ui.onboarding.login
 data class LoginViewState(
     var mail: String = "",
     var pass: String = "",
-    var enabled: Boolean = false
+    var enabled: Boolean = false,
+    var isLoggedIn: Boolean = false
 )
