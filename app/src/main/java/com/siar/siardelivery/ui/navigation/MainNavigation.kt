@@ -1,12 +1,12 @@
-package com.siar.siardelivery.ui
+package com.siar.siardelivery.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.siar.siardelivery.ui.home.navigation.addHomeScreen
-import com.siar.siardelivery.ui.onboarding.navigation.OnboardingNavScreens
-import com.siar.siardelivery.ui.onboarding.navigation.addLoginScreen
-import com.siar.siardelivery.ui.onboarding.navigation.addRegisterScreen
+import com.siar.siardelivery.ui.navigation.home.addHomeScreen
+import com.siar.siardelivery.ui.navigation.onboarding.OnboardingNavScreens
+import com.siar.siardelivery.ui.navigation.onboarding.addLoginScreen
+import com.siar.siardelivery.ui.navigation.onboarding.addRegisterScreen
 
 /*****
  * Project: Siar Delivery
@@ -23,6 +23,6 @@ fun MainNavigation() {
     ){
         addLoginScreen(navController)
         addRegisterScreen()
-        addHomeScreen(navController)
+        addHomeScreen()
     }
 }

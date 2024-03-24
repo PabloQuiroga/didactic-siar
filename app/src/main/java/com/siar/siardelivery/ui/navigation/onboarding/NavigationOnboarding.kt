@@ -1,10 +1,10 @@
-package com.siar.siardelivery.ui.onboarding.navigation
+package com.siar.siardelivery.ui.navigation.onboarding
 
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.siar.siardelivery.ui.home.navigation.HomeNavScreens
+import com.siar.siardelivery.ui.navigation.home.HomeNavScreens
 import com.siar.siardelivery.ui.onboarding.login.LoginScreen
 import com.siar.siardelivery.ui.onboarding.register.RegisterScreen
 

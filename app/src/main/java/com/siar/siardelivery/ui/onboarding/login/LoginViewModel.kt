@@ -1,5 +1,6 @@
 package com.siar.siardelivery.ui.onboarding.login
 
+import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -20,7 +21,7 @@ import javax.inject.Inject
  * Project: Siar Delivery
  * Created by: Pablo Daniel Quiroga
  *
- * Last update: 07/03/2024
+ * Last update: 24/03/2024
  *****/
 @HiltViewModel
 class LoginViewModel @Inject constructor(
@@ -38,9 +39,10 @@ class LoginViewModel @Inject constructor(
 
         changeLoadingState(true)
         viewModelScope.launch {
-            when (loginUseCase(request)){
+            when (val result = loginUseCase(request)){
                 is Resource.Success -> {
                     changeLoadingState(false)
+                    Log.e("MOCKUSER", result.data.toString())
                     // everything ok and have user data
                     _uiState.update {
                         it.copy(isLoggedIn = true)

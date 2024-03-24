@@ -1,4 +1,4 @@
-package com.siar.siardelivery.ui.home.navigation
+package com.siar.siardelivery.ui.navigation.home
 
 /*****
  * Project: Siar Delivery
