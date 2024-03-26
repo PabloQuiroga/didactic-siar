@@ -1,11 +1,15 @@
 package com.siar.siardelivery.domain.model.response
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
 /*****
  * Project: Siar Delivery
  * Created by: Pablo Daniel Quiroga
  *
  * Last update: 15/03/2024
  *****/
+@Parcelize
 data class Location(
     val street: Street,
     val city: String,
@@ -13,14 +17,4 @@ data class Location(
     val country: String,
     val postcode: String,
     val coordinates: Coordinates
-)
-
-data class Coordinates(
-    val latitude: String,
-    val longitude: String
-)
-
-data class Street(
-    val number: Int,
-    val name: String
-)
+) : Parcelable
