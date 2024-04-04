@@ -11,4 +11,9 @@
     <!--  Errors  -->
     <string name="login_error_title_default"><![CDATA[Algo salió mal]]></string>
     <string name="retry_lbl">Reintentar</string>
+
+    <!-- Registration -->
+    <string name="next">Continuar</string>
+    <string name="welcome_signup_title">Bienvenido!</string>
+    <string name="mail_description">Indique un correo electronico valido para continuar</string>
 </resources>
