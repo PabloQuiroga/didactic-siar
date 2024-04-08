@@ -29,6 +29,8 @@ import com.siar.siardelivery.ui.theme.DeliveryTheme
 /*****
  * Project: DemoNavigationCompose
  * Created by: Pablo Daniel Quiroga
+ *
+ * File for all custom EditText
  *****/
 @Composable
 fun CustomEditText(

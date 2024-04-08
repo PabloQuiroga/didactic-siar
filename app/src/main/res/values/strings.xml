@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">Siar Delivery</string>
 
+
+
+    <!--  Errors  -->
+    <string name="login_error_title_default"><![CDATA[Algo salió mal]]></string>
+    <string name="retry_lbl">Reintentar</string>
+
+    <!-- Commoms -->
+    <string name="welcome_title">Bienvenido!</string>
+
+    <!-- LoginScreen -->
     <string name="login_lbl">Login</string>
     <string name="login_sub">Ingresa con tu correo y contraseña</string>
     <string name="login_btn_lbl">Iniciar sesion</string>
@@ -8,12 +18,9 @@
     <string name="edit_lbl_mail">Email</string>
     <string name="edit_lbl_pass">Password</string>
 
-    <!--  Errors  -->
-    <string name="login_error_title_default"><![CDATA[Algo salió mal]]></string>
-    <string name="retry_lbl">Reintentar</string>
-
     <!-- Registration -->
     <string name="next">Continuar</string>
-    <string name="welcome_signup_title">Bienvenido!</string>
     <string name="mail_description">Indique un correo electronico valido para continuar</string>
+
+    <!-- HomeScreen -->
 </resources>
