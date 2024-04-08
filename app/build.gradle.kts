@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.ksp)
     id("kotlin-parcelize")
+    alias(libs.plugins.gms)
 }
 
 android {
@@ -90,6 +91,10 @@ dependencies {
     //retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+
+    //firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.analytics)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

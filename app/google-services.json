@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "119090093854",
+    "project_id": "siarapidemo",
+    "storage_bucket": "siarapidemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119090093854:android:c2974c270cd5cf1eeeb30f",
+        "android_client_info": {
+          "package_name": "com.siar.siardelivery"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLOFOrgEDa6nEoQalHlifgaZhYYr9Y47k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
