@@ -1,6 +1,5 @@
 package com.siar.siardelivery.ui.onboarding.login
 
-import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.siar.siardelivery.data.util.Resource
 import com.siar.siardelivery.domain.LoginUseCase
+import com.siar.siardelivery.domain.SessionUser
 import com.siar.siardelivery.domain.model.LoginRequest
+import com.siar.siardelivery.domain.model.response.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -41,12 +42,7 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
             when (val result = loginUseCase(request)){
                 is Resource.Success -> {
-                    changeLoadingState(false)
-                    Log.e("MOCKUSER", result.data.toString())
-                    // everything ok and have user data
-                    _uiState.update {
-                        it.copy(isLoggedIn = true)
-                    }
+                    setLoginCorrect(result.data!!)
                 }
                 is Resource.Error -> {
                     changeLoadingState(false)
@@ -64,6 +60,14 @@ class LoginViewModel @Inject constructor(
                 pass = pass,
                 enabled = enableLogin(mail, pass)
             )
+        }
+    }
+    private fun setLoginCorrect(response: Response) {
+        changeLoadingState(false)
+        SessionUser.user = response
+        // everything ok and have user data
+        _uiState.update {
+            it.copy(isLoggedIn = true)
         }
     }
 

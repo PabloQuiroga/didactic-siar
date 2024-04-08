@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.siar.siardelivery.R
 import com.siar.siardelivery.ui.components.CustomEditText
+import com.siar.siardelivery.ui.components.SimpleTopBar
 import com.siar.siardelivery.ui.theme.DeliveryTheme
 
 /*****
@@ -40,20 +41,7 @@ fun InputDocView(
         modifier = Modifier
             .fillMaxSize(),
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        text = stringResource(id = R.string.welcome_signup_title),
-                        textAlign = TextAlign.Center,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.primaryContainer
-                    )
-                },
-                colors = topAppBarColors( containerColor = MaterialTheme.colorScheme.primary )
-            )
-
+            SimpleTopBar()
         },
         content = { paddingValues ->
             Column(
