@@ -37,6 +37,7 @@ fun CustomEditText(
     data: String,
     label: String? = null,
     icons: List<ImageVector>? = null,
+    keyboardType: KeyboardType = KeyboardType.Text,
     transformation: VisualTransformation = VisualTransformation.None,
     onDataChange: (String) -> Unit
 ) {
@@ -52,7 +53,7 @@ fun CustomEditText(
         },
         maxLines = 1,
         singleLine = true,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+        keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 24.dp, start = 16.dp, end = 16.dp),

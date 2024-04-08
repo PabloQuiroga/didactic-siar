@@ -1,4 +1,4 @@
-package com.siar.siardelivery.ui.onboarding.login.views
+package com.siar.siardelivery.ui.login.views
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding

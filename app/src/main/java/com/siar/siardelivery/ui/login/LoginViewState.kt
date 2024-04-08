@@ -1,4 +1,4 @@
-package com.siar.siardelivery.ui.onboarding.login
+package com.siar.siardelivery.ui.login
 
 /*****
  * Project: Siar Delivery

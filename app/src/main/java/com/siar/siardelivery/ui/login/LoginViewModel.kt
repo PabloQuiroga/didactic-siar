@@ -1,4 +1,4 @@
-package com.siar.siardelivery.ui.onboarding.login
+package com.siar.siardelivery.ui.login
 
 import android.util.Patterns
 import androidx.lifecycle.LiveData
@@ -10,6 +10,7 @@ import com.siar.siardelivery.domain.LoginUseCase
 import com.siar.siardelivery.domain.SessionUser
 import com.siar.siardelivery.domain.model.LoginRequest
 import com.siar.siardelivery.domain.model.response.Response
+import com.siar.siardelivery.ui.auth.Auth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -72,7 +73,7 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun enableLogin(email: String, pass: String) =
-        Patterns.EMAIL_ADDRESS.matcher(email).matches() && pass.length > 6
+        Auth.checkEmail(email) && Auth.checkPsw(pass)
 
     private fun changeLoadingState(state: Boolean) {
         _isLoading.value = state

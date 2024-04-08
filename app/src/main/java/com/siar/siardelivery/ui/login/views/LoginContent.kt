@@ -1,4 +1,4 @@
-package com.siar.siardelivery.ui.onboarding.login.views
+package com.siar.siardelivery.ui.login.views
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.siar.siardelivery.R
 import com.siar.siardelivery.ui.components.CustomEditText
-import com.siar.siardelivery.ui.onboarding.login.LoginViewState
+import com.siar.siardelivery.ui.login.LoginViewState
 
 /*****
  * Project: Siar Delivery
@@ -131,7 +132,8 @@ fun SectionInputs(
         label = stringResource(id = R.string.edit_lbl_mail),
         icons = listOf(
             Icons.Filled.Email
-        )
+        ),
+        keyboardType = KeyboardType.Email
     ) {
         onMailChange(it)
     }
@@ -143,6 +145,7 @@ fun SectionInputs(
             Icons.Filled.VisibilityOff,
             Icons.Filled.Visibility
         ),
+        keyboardType = KeyboardType.Password,
         transformation = PasswordVisualTransformation('\u002A')
     ) {
         onPassChange(it)

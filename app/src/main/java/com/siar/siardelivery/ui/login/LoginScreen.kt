@@ -1,12 +1,12 @@
-package com.siar.siardelivery.ui.onboarding.login
+package com.siar.siardelivery.ui.login
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import com.siar.siardelivery.ui.onboarding.login.views.LoaderView
-import com.siar.siardelivery.ui.onboarding.login.views.LoginContent
+import com.siar.siardelivery.ui.login.views.LoaderView
+import com.siar.siardelivery.ui.login.views.LoginContent
 
 /*****
  * Project: Siar Delivery

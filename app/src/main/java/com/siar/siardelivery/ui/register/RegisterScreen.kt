@@ -1,4 +1,4 @@
-package com.siar.siardelivery.ui.onboarding.register
+package com.siar.siardelivery.ui.register
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

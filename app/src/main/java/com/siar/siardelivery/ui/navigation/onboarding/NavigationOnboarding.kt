@@ -5,8 +5,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.siar.siardelivery.ui.navigation.home.HomeNavScreens
-import com.siar.siardelivery.ui.onboarding.login.LoginScreen
-import com.siar.siardelivery.ui.onboarding.register.RegisterScreen
+import com.siar.siardelivery.ui.login.LoginScreen
+import com.siar.siardelivery.ui.register.RegisterScreen
 
 /*****
  * Project: Siar Delivery
