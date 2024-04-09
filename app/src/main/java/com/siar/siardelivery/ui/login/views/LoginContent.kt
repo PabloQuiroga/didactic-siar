@@ -2,6 +2,7 @@ package com.siar.siardelivery.ui.login.views
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -49,6 +50,7 @@ fun LoginContent(
             ) {
                 TitleSection()
 
+                Spacer(modifier = Modifier.padding(24.dp))
                 SectionInputs(
                     mail = state.mail,
                     pass = state.pass,
@@ -137,6 +139,8 @@ fun SectionInputs(
     ) {
         onMailChange(it)
     }
+
+    Spacer(modifier = Modifier.padding(8.dp))
 
     CustomEditText(
         data = pass,
