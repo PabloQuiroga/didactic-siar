@@ -37,6 +37,7 @@ fun CustomEditText(
     data: String,
     label: String? = null,
     icons: List<ImageVector>? = null,
+    enabled: Boolean = true,
     keyboardType: KeyboardType = KeyboardType.Text,
     transformation: VisualTransformation = VisualTransformation.None,
     onDataChange: (String) -> Unit
@@ -48,6 +49,7 @@ fun CustomEditText(
         onValueChange = {
             onDataChange(it)
         },
+        enabled = enabled,
         label = {
             Text(text = label ?: "" )
         },
@@ -56,7 +58,7 @@ fun CustomEditText(
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 24.dp, start = 16.dp, end = 16.dp),
+            .padding(start = 16.dp, end = 16.dp),
         colors = TextFieldDefaults.colors(
             focusedIndicatorColor = colorResource(id = R.color.orange_400),
             focusedContainerColor = MaterialTheme.colorScheme.background,
