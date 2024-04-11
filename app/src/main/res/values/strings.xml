@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">Siar Delivery</string>
 
-
-
     <!--  Errors  -->
     <string name="login_error_title_default"><![CDATA[Algo salió mal]]></string>
     <string name="retry_lbl">Reintentar</string>
@@ -19,8 +17,24 @@
     <string name="edit_lbl_pass">Password</string>
 
     <!-- Registration -->
-    <string name="next">Continuar</string>
-    <string name="mail_description">Indique un correo electronico valido para continuar</string>
+    <string name="btn_registration_next">Continuar</string>
+    <string name="btn_registration_ended">Finalizar</string>
+    <string name="mail_screen_title">Indique un correo electronico válido para continuar</string>
+    <string name="mail_input_label">Introduzca su correo electronico</string>
+    <string name="mail_repeat_label">Vuelva a introducir el correo electronico</string>
+    <string name="pass_screen_title">Indique una contraseña válida para continuar</string>
+    <string name="pass_input_label">Introduzca su contraseña</string>
+    <string name="pass_repeat_label">Vuelva a introducir su contraseña</string>
+    <string name="info_security_title">Recomendaciones antes de continuar…</string>
+    <string name="info_security_subtitle">A continuacion vamos a tomarte una foto</string>
+    <string name="info_security_label_first">busque un lugar iluminado para tomar la foto</string>
+    <string name="personal_data_title">Indiquenos algunos datos mas para estar en contacto</string>
+    <string name="fullname_input_label">Nombre completo</string>
+    <string name="phone_input_label">Número de telefono</string>
+    <string name="address_data_subtitle">Indiquenos su direccion</string>
+    <string name="street_name_input_label">Calle</string>
+    <string name="street_number_input_label">Número</string>
+    <string name="location_input_label">Localidad</string>
 
     <!-- HomeScreen -->
 </resources>

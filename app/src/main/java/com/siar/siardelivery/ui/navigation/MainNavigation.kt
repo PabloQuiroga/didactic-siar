@@ -6,7 +6,7 @@ import androidx.navigation.compose.rememberNavController
 import com.siar.siardelivery.ui.navigation.home.addHomeScreen
 import com.siar.siardelivery.ui.navigation.onboarding.OnboardingNavScreens
 import com.siar.siardelivery.ui.navigation.onboarding.addLoginScreen
-import com.siar.siardelivery.ui.navigation.onboarding.addRegisterScreen
+import com.siar.siardelivery.ui.navigation.onboarding.addRegisterMailScreen
 
 /*****
  * Project: Siar Delivery
@@ -22,7 +22,7 @@ fun MainNavigation() {
         startDestination = OnboardingNavScreens.LoginScreen.route
     ){
         addLoginScreen(navController)
-        addRegisterScreen()
+        addRegisterMailScreen(navController)
         addHomeScreen()
     }
 }

@@ -46,7 +46,7 @@ fun LoginContent(
             Column(
                 modifier = Modifier
                     .padding(it)
-                    .padding(top = 16.dp)
+                    .padding(top = 16.dp, start = 12.dp, end = 12.dp)
             ) {
                 TitleSection()
 
@@ -107,8 +107,10 @@ fun TitleSection() {
     Text(
         text = stringResource(id = R.string.login_lbl),
         modifier = Modifier
-            .padding(top = 24.dp, start = 32.dp),
-        fontFamily = FontFamily.Cursive,
+            .fillMaxWidth()
+            .padding(top = 24.dp),
+        textAlign = TextAlign.Center,
+        fontFamily = FontFamily.Serif,
         fontWeight = FontWeight.ExtraBold,
         fontSize = 36.sp
     )
@@ -116,8 +118,8 @@ fun TitleSection() {
         text = stringResource(id = R.string.login_sub),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 16.dp, horizontal = 32.dp),
-        textAlign = TextAlign.Start,
+            .padding(vertical = 16.dp),
+        textAlign = TextAlign.Center,
         fontSize = 14.sp
     )
 }

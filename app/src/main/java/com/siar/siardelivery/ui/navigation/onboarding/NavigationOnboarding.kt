@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.siar.siardelivery.ui.navigation.home.HomeNavScreens
 import com.siar.siardelivery.ui.login.LoginScreen
-import com.siar.siardelivery.ui.register.RegisterScreen
+import com.siar.siardelivery.ui.register.inputMail.InputMailScreen
 
 /*****
  * Project: Siar Delivery
@@ -20,7 +20,7 @@ fun NavGraphBuilder.addLoginScreen(navController: NavHostController){
         LoginScreen(
             hiltViewModel(),
             onRegisterClick = {
-                navigateToRegisterScreen(navController)
+                navigateToRegisterMailScreen(navController)
             },
             isLoggedIn = {
                 navigateToHomeScreen(navController)
@@ -29,17 +29,29 @@ fun NavGraphBuilder.addLoginScreen(navController: NavHostController){
     }
 }
 
-fun NavGraphBuilder.addRegisterScreen(){
+fun NavGraphBuilder.addRegisterMailScreen(navController: NavHostController){
     composable(
-        OnboardingNavScreens.RegisterScreen.route
+        OnboardingNavScreens.InputMailScreen.route
     ){
-        RegisterScreen()
+        InputMailScreen(
+            hiltViewModel(),
+            onClickNext = {
+                navigateToRegisterPassScreen()
+            }
+        )
     }
 }
 
-fun navigateToRegisterScreen(navController: NavHostController){
-    navController.navigate(OnboardingNavScreens.RegisterScreen.route)
-}
+
 fun navigateToHomeScreen(navController: NavHostController){
     navController.navigate(HomeNavScreens.HomeScreen.route)
+}
+fun navigateToRegisterMailScreen(navController: NavHostController){
+    navController.navigate(OnboardingNavScreens.InputMailScreen.route)
+}
+fun navigateToRegisterPassScreen(){
+    //navController.navigate()
+}
+fun navigateToRegisterPersonalDataScreen(){
+    //navController.navigate()
 }

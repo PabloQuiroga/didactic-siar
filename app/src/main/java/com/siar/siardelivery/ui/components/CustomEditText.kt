@@ -1,7 +1,6 @@
 package com.siar.siardelivery.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AcUnit
@@ -22,7 +21,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.siar.siardelivery.R
 import com.siar.siardelivery.ui.theme.DeliveryTheme
 
@@ -32,6 +30,7 @@ import com.siar.siardelivery.ui.theme.DeliveryTheme
  *
  * File for all custom EditText
  *****/
+@Suppress("LongParameterList") //TODO
 @Composable
 fun CustomEditText(
     data: String,
@@ -57,8 +56,7 @@ fun CustomEditText(
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 16.dp, end = 16.dp),
+            .fillMaxWidth(),
         colors = TextFieldDefaults.colors(
             focusedIndicatorColor = colorResource(id = R.color.orange_400),
             focusedContainerColor = MaterialTheme.colorScheme.background,
