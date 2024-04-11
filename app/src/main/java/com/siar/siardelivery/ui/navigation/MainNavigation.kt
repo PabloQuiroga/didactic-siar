@@ -7,6 +7,8 @@ import com.siar.siardelivery.ui.navigation.home.addHomeScreen
 import com.siar.siardelivery.ui.navigation.onboarding.OnboardingNavScreens
 import com.siar.siardelivery.ui.navigation.onboarding.addLoginScreen
 import com.siar.siardelivery.ui.navigation.onboarding.addRegisterMailScreen
+import com.siar.siardelivery.ui.navigation.onboarding.addRegisterPassScreen
+import com.siar.siardelivery.ui.navigation.onboarding.addRegisterPersonalDataScreen
 
 /*****
  * Project: Siar Delivery
@@ -23,6 +25,9 @@ fun MainNavigation() {
     ){
         addLoginScreen(navController)
         addRegisterMailScreen(navController)
+        addRegisterPassScreen(navController)
+        addRegisterPersonalDataScreen(navController)
+
         addHomeScreen()
     }
 }

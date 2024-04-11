@@ -35,7 +35,8 @@ import com.siar.siardelivery.ui.components.CustomEditText
  *****/
 @Composable
 fun PersonalDataScreen(
-    viewModel: PersonalDataViewModel
+    viewModel: PersonalDataViewModel,
+    onClickNext: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
@@ -128,7 +129,7 @@ fun PersonalDataScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp),
-                onClick = { /*TODO*/ }
+                onClick = { onClickNext() }
             ) {
                 Text(
                     text = stringResource(id = R.string.btn_registration_ended)
@@ -141,5 +142,8 @@ fun PersonalDataScreen(
 @Preview(showSystemUi = true)
 @Composable
 fun PersonalDataPreview(){
-    PersonalDataScreen(viewModel = PersonalDataViewModel())
+    PersonalDataScreen(
+        viewModel = PersonalDataViewModel(),
+        onClickNext = {}
+    )
 }

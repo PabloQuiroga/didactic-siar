@@ -7,6 +7,8 @@ import androidx.navigation.compose.composable
 import com.siar.siardelivery.ui.navigation.home.HomeNavScreens
 import com.siar.siardelivery.ui.login.LoginScreen
 import com.siar.siardelivery.ui.register.inputMail.InputMailScreen
+import com.siar.siardelivery.ui.register.inputPass.PassRegistrationScreen
+import com.siar.siardelivery.ui.register.personalData.PersonalDataScreen
 
 /*****
  * Project: Siar Delivery
@@ -36,7 +38,33 @@ fun NavGraphBuilder.addRegisterMailScreen(navController: NavHostController){
         InputMailScreen(
             hiltViewModel(),
             onClickNext = {
-                navigateToRegisterPassScreen()
+                navigateToRegisterPassScreen(navController)
+            }
+        )
+    }
+}
+
+fun NavGraphBuilder.addRegisterPassScreen(navController: NavHostController){
+    composable(
+        OnboardingNavScreens.InputPassScreen.route
+    ){
+        PassRegistrationScreen(
+            viewModel = hiltViewModel(),
+            onClickNext = {
+                navigateToRegisterPersonalDataScreen(navController)
+            }
+        )
+    }
+}
+
+fun NavGraphBuilder.addRegisterPersonalDataScreen(navController: NavHostController){
+    composable(
+        OnboardingNavScreens.InputPersonalDataScreen.route
+    ){
+        PersonalDataScreen(
+            viewModel = hiltViewModel(),
+            onClickNext = {
+                navigateToHomeScreen(navController)
             }
         )
     }
@@ -49,9 +77,9 @@ fun navigateToHomeScreen(navController: NavHostController){
 fun navigateToRegisterMailScreen(navController: NavHostController){
     navController.navigate(OnboardingNavScreens.InputMailScreen.route)
 }
-fun navigateToRegisterPassScreen(){
-    //navController.navigate()
+fun navigateToRegisterPassScreen(navController: NavHostController){
+    navController.navigate(OnboardingNavScreens.InputPassScreen.route)
 }
-fun navigateToRegisterPersonalDataScreen(){
-    //navController.navigate()
+fun navigateToRegisterPersonalDataScreen(navController: NavHostController){
+    navController.navigate(OnboardingNavScreens.InputPersonalDataScreen.route)
 }

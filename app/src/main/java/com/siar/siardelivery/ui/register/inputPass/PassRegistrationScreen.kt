@@ -34,7 +34,8 @@ import com.siar.siardelivery.ui.components.CustomEditText
  *****/
 @Composable
 fun PassRegistrationScreen(
-    viewModel: PassViewModel
+    viewModel: PassViewModel,
+    onClickNext: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
@@ -111,7 +112,7 @@ fun PassRegistrationScreen(
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp),
                 enabled = uiState.buttonEnabled,
-                onClick = {  }
+                onClick = { onClickNext() }
             ) {
                 Text(
                     text = stringResource(id = R.string.btn_registration_next)
@@ -125,6 +126,7 @@ fun PassRegistrationScreen(
 @Composable
 fun PassRegistrationScreenPreview(){
     PassRegistrationScreen(
-        viewModel = PassViewModel()
+        viewModel = PassViewModel(),
+        onClickNext = {}
     )
 }
