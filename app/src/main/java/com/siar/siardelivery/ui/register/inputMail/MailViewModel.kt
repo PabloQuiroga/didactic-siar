@@ -1,6 +1,7 @@
 package com.siar.siardelivery.ui.register.inputMail
 
 import androidx.lifecycle.ViewModel
+import com.siar.siardelivery.domain.model.request.SignupRequest
 import com.siar.siardelivery.ui.auth.Auth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,6 +20,9 @@ class MailViewModel @Inject constructor(): ViewModel(){
     private val _uiState = MutableStateFlow(InputMailState())
     val uiState: StateFlow<InputMailState> = _uiState.asStateFlow()
 
+    private val _navigate = MutableStateFlow(false)
+    val navigate: StateFlow<Boolean> = _navigate.asStateFlow()
+
     fun onFirstMailChanged(mail: String){
         with(_uiState){
             this.update {
@@ -36,6 +40,13 @@ class MailViewModel @Inject constructor(): ViewModel(){
                 secondMail = mail,
                 buttonEnabled = it.firstMail.equals(mail)
             )
+        }
+    }
+
+    fun onClickedNext(){
+        SignupRequest.mail = _uiState.value.firstMail
+        _navigate.update {
+            true
         }
     }
 }

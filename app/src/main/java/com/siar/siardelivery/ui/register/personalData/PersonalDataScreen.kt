@@ -14,6 +14,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -27,6 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.siar.siardelivery.R
+import com.siar.siardelivery.domain.SignupUseCase
 import com.siar.siardelivery.ui.components.CustomEditText
 
 /*****
@@ -39,6 +41,13 @@ fun PersonalDataScreen(
     onClickNext: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val navigate by viewModel.navigate.collectAsState()
+
+    LaunchedEffect(key1 = navigate) {
+        if (navigate){
+            onClickNext()
+        }
+    }
 
     Scaffold(
         modifier = Modifier
@@ -129,7 +138,9 @@ fun PersonalDataScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp),
-                onClick = { onClickNext() }
+                onClick = {
+                    viewModel.onClickedNext()
+                }
             ) {
                 Text(
                     text = stringResource(id = R.string.btn_registration_ended)
@@ -143,7 +154,7 @@ fun PersonalDataScreen(
 @Composable
 fun PersonalDataPreview(){
     PersonalDataScreen(
-        viewModel = PersonalDataViewModel(),
+        viewModel = PersonalDataViewModel(signupUseCase = SignupUseCase()),
         onClickNext = {}
     )
 }

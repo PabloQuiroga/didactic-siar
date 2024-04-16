@@ -37,7 +37,7 @@ fun NavGraphBuilder.addRegisterMailScreen(navController: NavHostController){
     ){
         InputMailScreen(
             hiltViewModel(),
-            onClickNext = {
+            goToNext = {
                 navigateToRegisterPassScreen(navController)
             }
         )
@@ -50,7 +50,7 @@ fun NavGraphBuilder.addRegisterPassScreen(navController: NavHostController){
     ){
         PassRegistrationScreen(
             viewModel = hiltViewModel(),
-            onClickNext = {
+            goToNext = {
                 navigateToRegisterPersonalDataScreen(navController)
             }
         )

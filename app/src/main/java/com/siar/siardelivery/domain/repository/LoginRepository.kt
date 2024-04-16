@@ -1,7 +1,7 @@
 package com.siar.siardelivery.domain.repository
 
 import com.siar.siardelivery.data.util.Resource
-import com.siar.siardelivery.domain.model.LoginRequest
+import com.siar.siardelivery.domain.model.request.LoginRequest
 import com.siar.siardelivery.domain.model.response.Response
 
 /*****

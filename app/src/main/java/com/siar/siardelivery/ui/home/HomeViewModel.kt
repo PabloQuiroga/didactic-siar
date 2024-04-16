@@ -1,7 +1,7 @@
 package com.siar.siardelivery.ui.home
 
 import androidx.lifecycle.ViewModel
-import com.siar.siardelivery.domain.SessionUser
+import com.siar.siardelivery.domain.model.SessionUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

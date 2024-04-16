@@ -2,7 +2,7 @@ package com.siar.siardelivery.data
 
 import com.siar.siardelivery.data.remote.UserService
 import com.siar.siardelivery.data.util.Resource
-import com.siar.siardelivery.domain.model.LoginRequest
+import com.siar.siardelivery.domain.model.request.LoginRequest
 import com.siar.siardelivery.domain.model.response.Response
 import com.siar.siardelivery.domain.repository.LoginRepository
 import retrofit2.HttpException

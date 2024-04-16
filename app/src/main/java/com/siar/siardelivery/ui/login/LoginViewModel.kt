@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.siar.siardelivery.data.util.Resource
 import com.siar.siardelivery.domain.LoginUseCase
-import com.siar.siardelivery.domain.SessionUser
-import com.siar.siardelivery.domain.model.LoginRequest
+import com.siar.siardelivery.domain.model.SessionUser
+import com.siar.siardelivery.domain.model.request.LoginRequest
 import com.siar.siardelivery.domain.model.response.Response
 import com.siar.siardelivery.ui.auth.Auth
 import dagger.hilt.android.lifecycle.HiltViewModel

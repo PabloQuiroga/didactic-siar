@@ -1,6 +1,7 @@
 package com.siar.siardelivery.ui.register.inputPass
 
 import androidx.lifecycle.ViewModel
+import com.siar.siardelivery.domain.model.request.SignupRequest
 import com.siar.siardelivery.ui.auth.Auth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,6 +20,9 @@ class PassViewModel @Inject constructor(): ViewModel() {
     private val _uiState = MutableStateFlow(InputPassState())
     val uiState: StateFlow<InputPassState> = _uiState.asStateFlow()
 
+    private val _navigate = MutableStateFlow(false)
+    val navigate: StateFlow<Boolean> = _navigate.asStateFlow()
+
     fun onFirstPassChanged(pass: String){
         _uiState.update {
             it.copy(
@@ -34,6 +38,13 @@ class PassViewModel @Inject constructor(): ViewModel() {
                 secondPass = pass,
                 buttonEnabled = it.firstPass.equals(pass)
             )
+        }
+    }
+
+    fun onClickedNext(){
+        SignupRequest.pass = _uiState.value.firstPass
+        _navigate.update {
+            true
         }
     }
 }

@@ -1,12 +1,11 @@
 package com.siar.siardelivery.domain.model
 
+import com.siar.siardelivery.domain.model.response.Response
+
 /*****
  * Project: Siar Delivery
  * Created by: Pablo Daniel Quiroga
- *
- * Last update: 13/03/2024
  *****/
-data class LoginRequest(
-    val mail: String,
-    val pass: String
-)
+object SessionUser {
+    var user: Response? = null
+}
