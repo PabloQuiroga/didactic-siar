@@ -10,6 +10,7 @@ import com.siar.siardelivery.domain.model.SessionUser
 import com.siar.siardelivery.domain.model.request.LoginRequest
 import com.siar.siardelivery.domain.model.response.Response
 import com.siar.siardelivery.ui.auth.Auth
+import com.siar.siardelivery.ui.auth.AuthEvents
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -54,11 +55,12 @@ class LoginViewModel @Inject constructor(
     }
 
     fun onLoginChanged(mail: String, pass: String){
+        val isCredentialsCorrect = enableLogin(mail, pass)
         _uiState.update {
             it.copy(
                 mail = mail,
                 pass = pass,
-                enabled = enableLogin(mail, pass)
+                enabled = isCredentialsCorrect == AuthEvents.CREDENTIALS_CORRECT
             )
         }
     }
@@ -71,8 +73,9 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    private fun enableLogin(email: String, pass: String) =
-        Auth.checkEmail(email) && Auth.checkPsw(pass)
+    private fun enableLogin(email: String, pass: String): AuthEvents {
+        return if (Auth.checkEmail(email) && Auth.checkPsw(pass)) AuthEvents.CREDENTIALS_CORRECT else AuthEvents.CREDENTIALS_NOT_CORRECT
+    }
 
     private fun changeLoadingState(state: Boolean) {
         _isLoading.value = state
