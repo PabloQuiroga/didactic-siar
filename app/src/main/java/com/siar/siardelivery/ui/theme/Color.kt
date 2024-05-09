@@ -12,7 +12,14 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 // brand
-val orange_400 = Color(0xFFFF9100)
+val Orange_400 = Color(0xFFFF9202)
+val Purple_400 = Color(0xFF6650a4)
+val Red_400 = Color(0xFFBA1A1A)
+
+// light colors
+val primary = Orange_400
+val secondary = Purple_400
+val error = Red_400
 
 // from MD
 val light_primary = Color(0xFF6750A4)

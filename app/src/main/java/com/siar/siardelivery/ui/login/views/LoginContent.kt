@@ -2,6 +2,7 @@ package com.siar.siardelivery.ui.login.views
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -41,66 +42,93 @@ fun LoginContent(
     onRegisterClick: () -> Unit
 ){
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
         content = {
-            Column(
-                modifier = Modifier
-                    .padding(it)
-                    .padding(top = 16.dp, start = 12.dp, end = 12.dp)
-            ) {
-                TitleSection()
-
-                Spacer(modifier = Modifier.padding(24.dp))
-                SectionInputs(
-                    mail = state.mail,
-                    pass = state.pass,
-                    onMailChange = { newMail ->
-                        onLoginChanged(newMail, state.pass)
-                    },
-                    onPassChange = { newPass ->
-                        onLoginChanged(state.mail, newPass)
-                    }
-                )
-            }
+            MainLoginContent(
+                paddingValues = it,
+                state = state,
+                onLoginChanged = { newMail, newPass ->
+                    onLoginChanged(newMail, newPass)
+                }
+            )
         },
         bottomBar = {
-            Column(
-                modifier = Modifier
-                    .padding(bottom = 32.dp)
-            ) {
-                Button(
-                    enabled = state.enabled,
-                    onClick = {
-                        onLoginClick()
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp, horizontal = 16.dp)
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.login_btn_lbl),
-                        fontSize = 16.sp,
-                        modifier = Modifier.padding(8.dp)
-                    )
-                }
-
-                Text(
-                    text = stringResource(id = R.string.login_redirect_signin_lbl),
-                    modifier = Modifier
-                        .clickable {
-                            onRegisterClick()
-                        }
-                        .fillMaxWidth()
-                        .padding(top = 8.dp),
-                    textAlign = TextAlign.Center,
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            }
+            BottomContent(
+                enabledLogin = state.enabled,
+                onLoginClick = { onLoginClick() },
+                onRegisterClick = { onRegisterClick() }
+            )
         }
     )
 }
 
+@Composable
+fun MainLoginContent(
+    paddingValues: PaddingValues,
+    state: LoginViewState,
+    onLoginChanged: (String, String) -> Unit
+){
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues)
+            .padding(top = 16.dp, start = 12.dp, end = 12.dp)
+    ) {
+        TitleSection()
+
+        Spacer(modifier = Modifier.padding(24.dp))
+        SectionInputs(
+            mail = state.mail,
+            pass = state.pass,
+            onMailChange = { newMail ->
+                onLoginChanged(newMail, state.pass)
+            },
+            onPassChange = { newPass ->
+                onLoginChanged(state.mail, newPass)
+            }
+        )
+    }
+}
+
+@Composable
+fun BottomContent(
+    enabledLogin: Boolean,
+    onLoginClick: () -> Unit,
+    onRegisterClick: () -> Unit
+){
+    Column(
+        modifier = Modifier
+            .padding(bottom = 32.dp)
+    ) {
+        Button(
+            enabled = true,//enabledLogin,
+            onClick = {
+                onLoginClick()
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp, horizontal = 16.dp)
+        ) {
+            Text(
+                text = stringResource(id = R.string.login_btn_lbl),
+                fontSize = 16.sp,
+                modifier = Modifier.padding(8.dp)
+            )
+        }
+
+        Text(
+            text = stringResource(id = R.string.login_redirect_signin_lbl),
+            modifier = Modifier
+                .clickable {
+                    onRegisterClick()
+                }
+                .fillMaxWidth()
+                .padding(top = 8.dp),
+            textAlign = TextAlign.Center,
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Bold
+        )
+    }
+}
 
 @Composable
 fun TitleSection() {
@@ -158,15 +186,16 @@ fun SectionInputs(
     }
 }
 
-@Preview
+@Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun LoginContentPreview(){
-    LoginContent(
-        state = LoginViewState(),
-        onLoginChanged = { _, _ ->
-            run {}
-        },
-        onLoginClick = {},
-        onRegisterClick = {}
-    )
+        LoginContent(
+            state = LoginViewState(),
+            onLoginChanged = { _, _ ->
+                run {}
+            },
+            onLoginClick = {},
+            onRegisterClick = {}
+        )
+
 }
