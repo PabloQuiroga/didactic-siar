@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.siar.siardelivery.ui.navigation.MainNavigation
+import com.siar.siardelivery.ui.main.navigation.MainNavigation
 import com.siar.siardelivery.ui.theme.DeliveryTheme
 import dagger.hilt.android.AndroidEntryPoint
 

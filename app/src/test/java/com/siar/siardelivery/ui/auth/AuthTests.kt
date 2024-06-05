@@ -1,5 +1,6 @@
 package com.siar.siardelivery.ui.auth
 
+import com.siar.siardelivery.ui.account.commons.Auth
 import org.junit.Assert
 import org.junit.Assert.assertTrue
 import org.junit.Test

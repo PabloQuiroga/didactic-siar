@@ -1,6 +1,6 @@
 package com.siar.siardelivery.ui.login
 
-import com.siar.siardelivery.ui.auth.Auth
+import com.siar.siardelivery.ui.account.commons.Auth
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
